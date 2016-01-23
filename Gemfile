@@ -23,3 +23,5 @@ gem 'capistrano_colors'
 
 gem 'mail', '2.6.3'
 gem 'zip', '2.0.2'
+
+gem 'i18n'

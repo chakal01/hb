@@ -5,15 +5,16 @@
   <meta name="description" content="<%= @meta_description%>">
   <meta name="keywords" content="<%=@meta_keywords%>">
   <meta name="author" content="Hervé Bonnot">
-  <link rel="icon" type="image/png" href="/images/icon.gif" />
+  <link rel="icon" type="image/png" href="/images/favicon.ico" />
   <%= css :layout %>
   <%= js :layout %>
 
 </head>
 <body>
 
+<div class="everything">
 <%= yield %>
-
+</div>
 </body>
 </html>
 

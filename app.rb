@@ -92,8 +92,23 @@ class App < Sinatra::Base
       erb :admin
     end
 
+    get '/constants' do
+      @constants = Constant.all
+      erb :constants
+    end
+
+    post '/constants' do
+      params.each do |key, value|
+        c = Constant.find_by(key: key)
+        c.update_attributes({value: value}) unless c.nil?
+      end
+      flash[:notice] = "Sauvegardé"
+      redirect '/admin/constants'
+    end
 
   end
 
 
 end
+
+require_relative 'models/init'
