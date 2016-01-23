@@ -5,7 +5,7 @@ class CreateConstants < ActiveRecord::Migration
       t.string :value
       t.string :label
       t.string :help
-      t.timestamps, null: false
+      t.timestamps null: false
     end
   end
 end

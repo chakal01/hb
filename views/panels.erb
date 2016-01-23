@@ -1,0 +1,36 @@
+<%= erb :admin_layout %>
+
+<table class="table" id="sortable">
+    <thead>
+        <th>Vignette</th>
+        <th title="Active tes panels pour les rendres visible aux visiteurs.">Actif</th>
+        <th>Titre</th>
+        <th>Nombre d'images</th>
+        <th>Trier</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+      <% @panels.each do |panel| %>
+        <tr>
+        <td>TODO</td>
+        <td>
+          <span id="<%= panel.id%>" class="switch-actif glyphicon <%= panel.is_active ? 'glyphicon-check' : 'glyphicon-unchecked' %> is-clickable"></span>
+        </td>
+        <td><%= panel.title %></td>
+        <td><%= panel.images.size %></td>
+        <td><span class="glyphicon glyphicon-screenshot is-clickable sortable-handler"></span></td>
+        <td>
+          <a href="/admin/gallery/<%= panel.id%>" class="btn">
+            <span class="glyphicon glyphicon-pencil" title="Editer"></span>
+          </a>
+          <a href="/admin/gallery/<%= panel.id%>/delete" title="Supprimer" onclick="return confirm('Es-tu sûr de vouloir supprimer ce panel ?');">
+            <span class="glyphicon glyphicon-trash btn"></span>
+          </a>
+        </td>
+      <% end %>
+    </tbody>
+</table>
+
+<a class="btn btn-default" href="/admin/gallery/new">Nouveau panel</a>
+
+

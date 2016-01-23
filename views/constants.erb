@@ -6,8 +6,8 @@
 
   <% @constants.each do |constant| %>
   <div class="form-group">
-    <label for="<%= constant.key %>" class="col-sm-2 control-label"><%= constant.label %></label>
-    <div class="col-sm-10">
+    <label for="<%= constant.key %>" class="col-sm-3 control-label"><%= constant.label %></label>
+    <div class="col-sm-9">
       <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
       <span id="helpBlock" class="help-block"><%= constant.help %></span>
     </div>

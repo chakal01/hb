@@ -9,8 +9,8 @@ require 'securerandom'
 require 'logger'
 require 'sinatra/assetpack'
 require 'sinatra/flash'
-require "sinatra/cookies"
-
+require 'sinatra/cookies'
+require 'sinatra/reloader'
 
 # db = YAML.load_file('./config/database.yml')["development"]
 
@@ -51,12 +51,22 @@ class App < Sinatra::Base
 
     js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js']
     css :layout, ['/css/bootstrap.min.css', '/css/app.css']
+    js :panel_form, ['/js/panel_form.js']
 
     js_compression :jsmin
     css_compression :sass
   end
 
   configure do
+    configure :development do
+      register Sinatra::Reloader
+      also_reload './helpers/auth_helper.rb'
+      also_reload './helpers/captcha_helper.rb'
+      also_reload './models/constant.rb'
+      also_reload './models/image.rb'
+      also_reload './models/notification.rb'
+      also_reload './models/panel.rb'
+    end
     if config["file_logger"]
       use ::Rack::CommonLogger, access_logger
     end
@@ -106,9 +116,47 @@ class App < Sinatra::Base
       redirect '/admin/constants'
     end
 
+    get '/gallery' do
+      @panels = Panel.all.include(:images)
+      erb :panels
+    end
+
+    get '/gallery/new' do
+      @panel = Panel.new
+      erb :panel_form
+    end
+
+    post '/gallery/new' do
+      puts "#{params}"
+      Panel.create(params.slice("title", "subtitle", "vignette_id", "date"))
+      flash[:notice] = "Panel créé."
+      redirect '/admin/gallery'
+    end
+
+    get '/gallery/:id' do
+      @panel = Panel.find(params[:id])
+      redirect '/admin/gallery' if @panel.nil?
+      erb :panel_form
+    end
+
+    post '/gallery/:id' do
+      @panel = Panel.find(params[:id])
+      @panel.update_attributes(params.slice("title", "subtitle", "vignette_id", "date"))
+      flash[:notice] = "Panel sauvé."
+      redirect '/admin/gallery'
+    end
+
+    get '/gallery/:id/delete' do
+      @panel = Panel.find(params[:id])
+      @panel.destroy
+      flash[:notice] = "Le panel a été supprimé, et toutes ses images avec."
+      redirect '/admin/gallery'
+    end
+
   end
 
 
 end
 
 require_relative 'models/init'
+require_relative 'helpers/init'

@@ -6,7 +6,7 @@ class CreateImages < ActiveRecord::Migration
       t.string :file_normal
       t.integer :panel_id
       t.string :comment
-      t.timestamps, null: false
+      t.timestamps null: false
     end
 
   end

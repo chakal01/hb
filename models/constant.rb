@@ -1,3 +1,3 @@
 class Constant < ActiveRecord::Base
-    validates :key, uniqueness: true
+  validates :key, uniqueness: true
 end
