@@ -20,12 +20,17 @@
         <td><%= panel.images.size %></td>
         <td><span class="glyphicon glyphicon-screenshot is-clickable sortable-handler"></span></td>
         <td>
-          <a href="/admin/gallery/<%= panel.id%>" class="btn">
-            <span class="glyphicon glyphicon-pencil" title="Editer"></span>
+          <a href="/admin/gallery/<%= panel.id%>" class="btn" title="Editer">
+            <span class="glyphicon glyphicon-pencil"></span>
           </a>
-          <a href="/admin/gallery/<%= panel.id%>/delete" title="Supprimer" onclick="return confirm('Es-tu sûr de vouloir supprimer ce panel ?');">
-            <span class="glyphicon glyphicon-trash btn"></span>
+          <a href="/admin/gallery/<%= panel.id%>/image" class="btn" title="Gérer les images">
+            <span class="glyphicon glyphicon-picture "></span>
           </a>
+          <a href="/admin/gallery/<%= panel.id%>/delete" class="btn" title="Supprimer" onclick="return confirm('Es-tu sûr de vouloir supprimer ce panel ?');">
+            <span class="glyphicon glyphicon-trash "></span>
+          </a>
+
+          
         </td>
       <% end %>
     </tbody>

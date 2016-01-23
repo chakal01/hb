@@ -10,7 +10,7 @@ class Panel < ActiveRecord::Base
 
   private
     def default_values
-      self.folder_name = I18n.transliterate(self.title).gsub(/ /, '_')
+      self.folder_name = I18n.transliterate(self.title).downcase.gsub(/ /, '_')
       self.is_active = false
       self.ordre = Panel.count
     end

@@ -102,11 +102,13 @@ class App < Sinatra::Base
       erb :admin
     end
 
+    # List all constantes
     get '/constants' do
       @constants = Constant.all
       erb :constants
     end
 
+    # Update constants
     post '/constants' do
       params.each do |key, value|
         c = Constant.find_by(key: key)
@@ -116,16 +118,20 @@ class App < Sinatra::Base
       redirect '/admin/constants'
     end
 
+    # List all panels
     get '/gallery' do
       @panels = Panel.all
       erb :panels
     end
 
+    # View form for a new panel
     get '/gallery/new' do
       @panel = Panel.new
+      @title_form, @cta_form = "Création", "Créer"
       erb :panel_form
     end
 
+    # Create a new panel
     post '/gallery/new' do
       puts "#{params}"
       Panel.create(params.slice("title", "subtitle", "vignette_id", "date"))
@@ -133,12 +139,15 @@ class App < Sinatra::Base
       redirect '/admin/gallery'
     end
 
+    # View form to edit a panel
     get '/gallery/:id' do
       @panel = Panel.find(params[:id])
+      @title_form, @cta_form = "Editer", "Enregistrer"
       redirect '/admin/gallery' if @panel.nil?
       erb :panel_form
     end
 
+    # Update a panel
     post '/gallery/:id' do
       @panel = Panel.find(params[:id])
       @panel.update_attributes(params.slice("title", "subtitle", "vignette_id", "date"))
@@ -146,11 +155,76 @@ class App < Sinatra::Base
       redirect '/admin/gallery'
     end
 
+    # Delete a panel
     get '/gallery/:id/delete' do
       @panel = Panel.find(params[:id])
-      @panel.destroy
-      flash[:notice] = "Le panel a été supprimé, et toutes ses images avec."
+      @panel.destroy unless @panel.nil?
+      flash[:notice] = "Le panel a été supprimé, et toutes ses images avec"
       redirect '/admin/gallery'
+    end
+
+    # List all images of a panel
+    get '/gallery/:id/image' do
+      @panel = Panel.find(params[:id])
+      erb :image
+    end
+
+    # Create a new image
+    post '/gallery/:id/image/new' do
+      @panel = Panel.find(params[:id])
+
+      if params[:myfile].nil? or params[:name].nil?
+        flash[:error] = "Choissisez au moins un fichier et un nom."
+        redirect "/admin/gallery/#{params[:id]}/image"
+      end
+      format = params[:myfile][:filename].split('.')[1].downcase
+      img = Image.create(
+        name: params[:name],
+        comment: params[:comment],
+        panel_id: @panel.id,
+      )
+
+      img.update_attributes({  
+        file_vignette: "#{@panel.folder_name}_#{img.id}_vignette.#{format}",
+        file_normal: "#{@panel.folder_name}_#{img.id}.#{format}",
+      })
+
+      # Save image
+      File.open("./app/images/panels/#{@panel.folder_name}/#{img.file_normal}", "wb") do |f|
+        f.write(params[:myfile][:tempfile].read)
+      end
+
+      # Resize image
+      i = Magick::Image.read("./app/images/panels/#{@panel.folder_name}/#{img.file_normal}").first
+      width, height = i.columns, i.rows
+
+      normal_size, vignette_size = 1024, 150
+      i.resize_to_fit(normal_size,normal_size).write("./app/images/panels/#{@panel.folder_name}/#{img.file_normal}") if width > normal_size || height > normal_size
+
+      if width > vignette_size || height > vignette_size
+        i.resize_to_fit(vignette_size,vignette_size).write("./app/images/panels/#{@panel.folder_name}/#{img.file_vignette}")
+      else
+        i.write("./app/images/panels/#{@panel.folder_name}/#{img.file_icon}")
+      end
+
+      flash[:notice] = "Image enregistrée"
+      redirect "/admin/gallery/#{params[:id]}/image"
+    end
+
+    # Update image title and cmment
+    post '/gallery/:id/image/:img_id' do
+      @img = Image.find(params[:img_id])
+      @img.update_attributes({name: params[:name], comment: params[:comment]}) unless @img.nil?
+      flash[:notice] = "Image #{params[:name]} sauvegardée"
+      redirect "/admin/gallery/#{params[:id]}/image"
+    end
+
+    # Delete an image
+    get '/gallery/:id/image/:img_id/delete' do
+      @image = Image.find(params[:img_id])
+      @image.destroy unless @image.nil?
+      flash[:notice] = "Image supprimée"
+      redirect "/admin/gallery/#{params[:id]}/image"
     end
 
   end

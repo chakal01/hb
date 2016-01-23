@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
 
   private
     def delete_files
-      begin File.delete("./app/images/posts/#{self.post.folder_name}/#{self.file_vignette}");rescue; end
-      begin File.delete("./app/images/posts/#{self.post.folder_name}/#{self.file_normal}");rescue; end
+      begin File.delete("./app/images/panels/#{self.post.folder_name}/#{self.file_vignette}");rescue; end
+      begin File.delete("./app/images/panels/#{self.post.folder_name}/#{self.file_normal}");rescue; end
     end
 end

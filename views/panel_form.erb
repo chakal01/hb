@@ -1,7 +1,7 @@
 <%= erb :admin_layout %>
 <%= js :panel_form %>
 
-<h2>Création</h2>
+<h2><%= @title_form%></h2>
 
 
 <form class="form-horizontal" method="post">
@@ -19,7 +19,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <button type="submit" class="btn btn-default">Créer</button>
+      <button type="submit" class="btn btn-default"><%= @cta_form %></button>
     </div>
   </div>
 </form>

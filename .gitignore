@@ -5,7 +5,7 @@ Gemfile.lock
 config/database.yml
 config/application.yml
 db/schema.rb
-/app/images/posts/**/*.*
+/app/images/panels/**/*.*
 Capfile
 config/deploy.rb
 config/deploy/production.rb
