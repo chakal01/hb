@@ -117,7 +117,7 @@ class App < Sinatra::Base
     end
 
     get '/gallery' do
-      @panels = Panel.all.include(:images)
+      @panels = Panel.all
       erb :panels
     end
 
