@@ -51,7 +51,7 @@ class App < Sinatra::Base
 
     js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js']
     css :layout, ['/css/bootstrap.min.css', '/css/app.css']
-    js :panel_form, ['/js/panel_form.js']
+    js :admin, ['/js/admin.js']
 
     js_compression :jsmin
     css_compression :sass
@@ -84,7 +84,14 @@ class App < Sinatra::Base
     erb :welcome
   end
 
+  get '/autre' do
+    erb :accueil
+  end
   
+  get '/galerie' do
+    @panels = Panel.where(is_active: true)
+    erb :gallery
+  end
 
 
   # ============ admin section
@@ -99,7 +106,7 @@ class App < Sinatra::Base
     end
 
     get '' do
-      erb :admin
+      redirect '/admin/gallery'
     end
 
     # List all constantes
@@ -137,6 +144,14 @@ class App < Sinatra::Base
       Panel.create(params.slice("title", "subtitle", "vignette_id", "date"))
       flash[:notice] = "Panel créé."
       redirect '/admin/gallery'
+    end
+
+    # Ajax to active/deactive a panel
+    get '/gallery/:id/toggle' do
+      @panel = Panel.find(params[:id])
+      @panel.is_active = !@panel.is_active
+      @panel.save
+      halt 200
     end
 
     # View form to edit a panel

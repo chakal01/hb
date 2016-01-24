@@ -6,15 +6,22 @@
   <meta name="keywords" content="<%=@meta_keywords%>">
   <meta name="author" content="Hervé Bonnot">
   <link rel="icon" type="image/png" href="/images/favicon.ico" />
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
   <%= css :layout %>
   <%= js :layout %>
-
 </head>
 <body>
 
-<div class="everything">
-<%= yield %>
-</div>
+  <div class="everything">
+
+    <div class="header">
+      <h1>Hervé Bonnot: mes créations</h1>
+    </div>
+
+    <%= yield %>
+
+  </div>
+
 </body>
 </html>
 

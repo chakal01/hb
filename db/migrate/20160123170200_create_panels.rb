@@ -8,7 +8,7 @@ class CreatePanels < ActiveRecord::Migration
       t.date :date
       t.integer :icon_id
       t.integer :ordre
-      t.boolean :is_active
+      t.boolean :is_active, default: false
       t.timestamps null: false
     end
 

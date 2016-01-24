@@ -1,13 +1,55 @@
 html, body{
-  background-color: #EAEAEA;
+  background-color: #e4d8d9;
   margin: 0px;
   height: 100%;
-
+  padding: 0px;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 16px;
 }
 
 .everything{
   width: 800px;
   margin: auto;
   background-color: #FFF;
-  padding: 20px 20px 50px 20px;
 }
+
+.main-content{
+  padding: 20px;
+  padding-bottom: 50px;
+}
+
+.div-content{
+  padding: 20px;
+}
+
+.is-clickable{
+  cursor: pointer;
+}
+
+.header{
+  width: 100%;
+  background-color: #794044;
+  color: #e4d8d9;
+  padding: 20px;
+  padding-top: 30px;
+}
+.header > h1 {
+  margin: 0px;
+  font-weight: bold;
+  font-size: 40px;
+
+}
+
+/* Buttons */
+.btn{
+  border-color: #794044;
+  color: #794044;
+  font-size: 16px;
+}
+.btn:hover{
+  background-color: #e4d8d9;
+  border-color: #794044;
+  color: #794044;
+}
+
+.margin-top-20{margin-top: 20px;}
