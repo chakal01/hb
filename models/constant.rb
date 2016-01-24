@@ -4,7 +4,7 @@ class Constant < ActiveRecord::Base
 
   def self.get(key)
     c = Constant.find_by(key: key)
-    if c.nil?
+    if c.nil? or c.value.nil?
       return ""
     else
       c.value.gsub(/\n/, '<br>') 
