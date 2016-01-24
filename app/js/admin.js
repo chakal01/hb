@@ -12,6 +12,16 @@ $(document).ready(function(){
     });
   });
 
+  /* Toggle image on welcom screen */
+  $(".switch-img-is-active").click(function(){
+    var thus = this
+    $.ajax({
+      url: "/admin/images/"+this.id+"/toggle",
+    }).done(function() {
+      $( thus ).toggleClass( "glyphicon-check");
+      $( thus ).toggleClass( "glyphicon-unchecked" );
+    });
+  });
 
   /* Sortable table */
   /* Return a helper with preserved width of cells */

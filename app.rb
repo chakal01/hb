@@ -2,9 +2,6 @@ require 'bundler'
 Bundler.require(:default)
 
 require 'yaml'
-require './helpers/auth_helper'
-require './helpers/captcha_helper'
-# require './helpers/mailer_helper'
 require 'securerandom'
 require 'logger'
 require 'sinatra/assetpack'
@@ -27,6 +24,7 @@ class App < Sinatra::Base
   register Sinatra::AssetPack
   register Sinatra::Namespace
   include CaptchaHelper
+  include MailerHelper
   enable :sessions
   register Sinatra::Flash
   helpers Sinatra::Cookies
@@ -52,6 +50,7 @@ class App < Sinatra::Base
     js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery.fancybox.pack.js', '/js/jquery-ui.min.js']
     css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
     js :admin, ['/js/admin.js']
+    js :contact, ['/js/contact.js']
 
     js_compression :jsmin
     css_compression :sass
@@ -62,6 +61,7 @@ class App < Sinatra::Base
       register Sinatra::Reloader
       also_reload './helpers/auth_helper.rb'
       also_reload './helpers/captcha_helper.rb'
+      also_reload './helpers/mailer_helper.rb'
       also_reload './models/constant.rb'
       also_reload './models/image.rb'
       also_reload './models/notification.rb'
@@ -81,12 +81,41 @@ class App < Sinatra::Base
 
 
   get '/' do
+    @images = Image.where(is_on_welcome_screen: true).order(:id)
     erb :welcome
   end
 
   get '/galerie' do
     @panels = Panel.where(is_active: true).order(:ordre)
     erb :gallery
+  end
+
+  get '/contact' do
+    @text_intro_contact = Constant.find_by_key('text_contact').value.gsub(/\n/, '<br>')
+    erb :contact
+  end
+
+  post '/contact' do
+    cookies[:email] = params[:email]
+    cookies[:confirmEmail] = params[:confirmEmail]
+    cookies[:title] = params[:title]
+    cookies[:content] = params[:content]
+
+    errors = []
+    errors << "Emails non compatibles" if params[:email]!=params[:confirmEmail]
+    errors << "Veuillez écrire un message" if params[:content].nil? or params[:content]==""
+    errors << "Code de sécurité erroné" unless captcha_pass?
+    
+    unless errors.empty?
+      errors << "Veuillez retaper le code de sécurité" unless errors.include? "Code de sécurité erroné"
+      flash[:error] = errors.join(', ')
+    else
+      send_mail(params[:email], params[:title], params[:content])
+      cookies[:title], cookies[:content] = nil, nil
+      Notification.create(email: params[:email], title: params[:title], content: params[:content] )
+      flash[:notice] = "Votre message a bien été envoyé à Hervé Bonnot, je vous recontacterai au plus vite."
+    end
+    redirect '/contact'
   end
 
 
@@ -107,7 +136,7 @@ class App < Sinatra::Base
 
     # List all constantes
     get '/constants' do
-      @constants = Constant.all
+      @constants = Constant.all.order(:id)
       erb :constants
     end
 
@@ -246,6 +275,30 @@ class App < Sinatra::Base
       @image.destroy unless @image.nil?
       flash[:notice] = "Image supprimée"
       redirect "/admin/gallery/#{params[:id]}/image"
+    end
+
+    # List all images
+    get '/images' do
+      @images = Image.all.order(:id)
+      erb :select_images
+    end
+
+    # Toggle image appearance on welcome screen
+    get '/images/:id/toggle' do
+      @image = Image.find(params[:id])
+      @image.is_on_welcome_screen = !@image.is_on_welcome_screen
+      @image.save
+      halt 200
+    end
+
+    get '/notifications' do
+      @notifications = Notification.order(:created_at).reverse
+      erb :notifications
+    end
+
+    get '/notification/:id/delete' do
+      Notification.where(id: params[:id]).delete_all
+      redirect '/admin/notifications'
     end
 
   end

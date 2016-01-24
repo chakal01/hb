@@ -1,7 +1,9 @@
 <%= erb :admin_layout %>
 
 <div class="main-content">
-  <h2>Constantes</h2>
+  <h2>Textes</h2>
+
+  <%= erb :flash %>
 
   <form method="post" class="form-horizontal">
 
@@ -9,7 +11,11 @@
     <div class="form-group">
       <label for="<%= constant.key %>" class="col-sm-3 control-label"><%= constant.label %></label>
       <div class="col-sm-9">
-        <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
+        <% if constant.input_type=="textarea" %>
+          <textarea class="form-control col-sm-12" rows="7" id="<%= constant.key %>" name="<%= constant.key %>"><%= constant.value %></textarea>
+        <% else %>
+          <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
+        <% end %>
         <span id="helpBlock" class="help-block"><%= constant.help %></span>
       </div>
     </div>

@@ -1,0 +1,33 @@
+<%= erb :admin_layout %>
+
+<div class="main-content">
+  <h2>Notifications</h2>
+
+  <table class="table" id="sortable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Email</th>
+          <th>Titre</th>
+          <th>Message</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @notifications.each do |notif| %>
+        <tr>
+          <td><%= notif.created_at.strftime "%d/%m/%Y %H:%M" %></td>
+          <td><%= notif.email %></td>
+          <td><%= notif.title %></td>
+          <td><%= notif.content %></td>
+          <td><a href="/admin/notification/<%= notif.id%>/delete" title="Supprimer" onclick="return confirm('Es-tu sûr de vouloir supprimer cette notification ?');">
+            <span class="glyphicon glyphicon-trash btn"></span>
+          </a></td>
+        </tr>
+      <% end %>
+      </tbody>
+  </table>
+
+
+
+</div>

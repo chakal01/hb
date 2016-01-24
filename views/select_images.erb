@@ -1,0 +1,31 @@
+<%= erb :admin_layout %>
+
+<div class="main-content">
+  <h2>Images d'accueil</h2>
+
+  <p>Les images cochées vont figurer sur la page d'accueil (3~5 images conseillées)</p>
+  <table class="table" id="sortable">
+      <thead>
+        <tr>
+          <th>Actif</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @images.each do |image| %>
+          <tr>
+            <td>
+              <span id="<%= image.id%>" class="switch-img-is-active glyphicon <%= image.is_on_welcome_screen ? 'glyphicon-check' : 'glyphicon-unchecked' %> is-clickable"></span>
+            </td>
+            <td>
+              <img width="100" src="/images/panels/<%= image.panel.folder_name %>/<%= image.file_normal %>"/>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+
+  <a class="btn btn-default" href="/admin/gallery/new">Nouveau panel</a>
+
+
+</div>

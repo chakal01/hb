@@ -6,6 +6,7 @@ class CreateImages < ActiveRecord::Migration
       t.string :file_normal
       t.integer :panel_id
       t.string :comment
+      t.boolean :is_on_welcome_screen, default: false
       t.timestamps null: false
     end
 
