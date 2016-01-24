@@ -9,16 +9,11 @@ require 'sinatra/flash'
 require 'sinatra/cookies'
 require 'sinatra/reloader'
 
-# db = YAML.load_file('./config/database.yml')["development"]
+require_relative 'models/init'
+require_relative 'helpers/init'
 
-#   ActiveRecord::Base.establish_connection(
-#       adapter: db["adapter"],
-#       host: db["host"],
-#       username: db["username"],
-#       password: db["password"],
-#       database: db["database"],
-#       encoding: db["encoding"]
-#   )
+db = YAML.load_file('./config/database.yml')["development"]
+ActiveRecord::Base.establish_connection( db )
 
 class App < Sinatra::Base
   register Sinatra::AssetPack
@@ -313,5 +308,4 @@ class App < Sinatra::Base
 
 end
 
-require_relative 'models/init'
-require_relative 'helpers/init'
+
