@@ -42,7 +42,7 @@ class App < Sinatra::Base
     serve '/js', from: 'app/js'
     serve '/fonts', from: 'app/fonts'
 
-    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery.fancybox.pack.js', '/js/jquery-ui.min.js']
+    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery-ui.min.js', '/js/jquery.fancybox.pack.js' ]
     css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
     js :admin, ['/js/admin.js']
     js :contact, ['/js/contact.js']
