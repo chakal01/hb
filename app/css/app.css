@@ -11,11 +11,11 @@ html, body{
   width: 800px;
   margin: auto;
   background-color: #FFF;
+  padding-bottom: 20px;
 }
 
 .main-content{
   padding: 20px;
-  padding-bottom: 50px;
 }
 
 .div-content{
@@ -51,5 +51,12 @@ html, body{
   border-color: #794044;
   color: #794044;
 }
+
+.footer{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+}
+
 
 .margin-top-20{margin-top: 20px;}

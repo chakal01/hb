@@ -49,8 +49,8 @@ class App < Sinatra::Base
     serve '/js', from: 'app/js'
     serve '/fonts', from: 'app/fonts'
 
-    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js']
-    css :layout, ['/css/bootstrap.min.css', '/css/app.css']
+    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery.fancybox.pack.js']
+    css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
     js :admin, ['/js/admin.js']
 
     js_compression :jsmin
@@ -84,10 +84,6 @@ class App < Sinatra::Base
     erb :welcome
   end
 
-  get '/autre' do
-    erb :accueil
-  end
-  
   get '/galerie' do
     @panels = Panel.where(is_active: true)
     erb :gallery

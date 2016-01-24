@@ -1,1 +1,42 @@
-La galerie
+<script>
+  $(document).ready(function(){
+    $("a.grouped_elements").fancybox();
+  });
+</script>
+<style type="text/css">
+  .div-panel{
+    padding-top: 50px;
+    text-align: center;
+  }
+  .div-panel > .title{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .div-panel > .subtitle{
+    font-size: 14px;
+  }
+
+</style>
+
+<div class="main-content">
+
+  <% @panels.each do |panel| %>
+
+    <div class="div-panel">
+
+
+
+      <div class="image">
+        <% panel.images.each do |img| %>
+          <% csrc = "images/panels/#{panel.folder_name}/#{img.file_normal}" %>
+          <a class="grouped_elements" rel="group_<%= panel.id%>" href="<%= csrc %>"><img width="500" src="<%= csrc %>" alt="<%= img.name %>"/></a>
+        <% end %>
+        
+      </div>
+      <div class="title" ><%= panel.title %></div>
+      <div class="subtitle" ><%= panel.subtitle %></div>
+    </div>
+    <hr>
+  <% end %>
+
+</div>
