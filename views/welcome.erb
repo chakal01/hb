@@ -72,7 +72,7 @@
 
   <div class="main-content">
 
-    <div class="intro-site">Bienvenue sur mon site, où je vous propose de regarder mes créations. Ici je met un joli texte d'introduction, je parle un peu de moi.</div>
+    <div class="intro-site"><%= @text_intro %></div>
 
     <div class="button-to-gallery" >
       <a class="btn btn-default" href="/galerie">Mes créations</a>
@@ -80,25 +80,23 @@
 
     <div class="section" >
       <div class="title">News</div>
-      <div class="content">
-        Présent à l'Estivale Artistique 2014 - LAMARCHE SUR SAONE <br>
-          Chapelle Notre-Dame de Lamarchotte <br>
-          Du samedi 24 mai au dimanche 22 juin 2014 <br>
-          Ouverture de l'exposition les samedis, dimanches et jours fériés de 14h30 à 18h30 <br>
-          et le dimanche 22 juin de 10h à 18h30 <br>
+      <div class="content"><%= @news %>
+        
       </div>
     </div>
 
     <div class="section" >
       <div class="title">Contact</div>
       <div class="content">
-        Hervé Bonnot<br>
-        145, Route des lilas<br>
-        21000 Senecey-les-Dijon<br>
-        04 04 04 04 04<br>
+        <div class="row"> 
+        <div class="col-sm-4"> 
+          <%= @address %>
+        
+          <a class="btn btn-default margin-top-20" href="/contact" >Me contacter</a>
+        </div>
+        <div class="col-sm-8">Ici la carte gmaps</div> 
       
-        <a class="btn btn-default margin-top-20" href="/contact" >Me contacter</a>
-      
+      </div>
       </div>
     </div>
     

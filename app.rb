@@ -73,7 +73,11 @@ class App < Sinatra::Base
   end
 
   before do
-    @title = "Création"
+    @title = Constant.get('title')
+    @meta_description = Constant.get('meta_description')
+    @meta_keywords = Constant.get('meta_keywords')
+    @title = Constant.get('title')
+
     if config["file_logger"]
       env["rack.errors"] = error_logger
     end
@@ -82,6 +86,9 @@ class App < Sinatra::Base
 
   get '/' do
     @images = Image.where(is_on_welcome_screen: true).order(:id)
+    @text_welcome = Constant.get('text_welcome')
+    @news = Constant.get('news')
+    @address = Constant.get('address')
     erb :welcome
   end
 
@@ -91,7 +98,7 @@ class App < Sinatra::Base
   end
 
   get '/contact' do
-    @text_intro_contact = Constant.find_by_key('text_contact').value.gsub(/\n/, '<br>')
+    @text_intro_contact = Constant.get('text_contact')
     erb :contact
   end
 
