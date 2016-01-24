@@ -49,7 +49,7 @@ class App < Sinatra::Base
     serve '/js', from: 'app/js'
     serve '/fonts', from: 'app/fonts'
 
-    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery.fancybox.pack.js']
+    js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery.fancybox.pack.js', '/js/jquery-ui.min.js']
     css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
     js :admin, ['/js/admin.js']
 
@@ -85,7 +85,7 @@ class App < Sinatra::Base
   end
 
   get '/galerie' do
-    @panels = Panel.where(is_active: true)
+    @panels = Panel.where(is_active: true).order(:ordre)
     erb :gallery
   end
 
@@ -140,6 +140,16 @@ class App < Sinatra::Base
       Panel.create(params.slice("title", "subtitle", "vignette_id", "date"))
       flash[:notice] = "Panel créé."
       redirect '/admin/gallery'
+    end
+
+    # Sort panels
+    post '/gallery/order' do
+      params[:list].each_with_index do |id, index|
+        panel = Panel.find(id)
+        panel.ordre = index
+        panel.save
+      end
+      halt 200
     end
 
     # Ajax to active/deactive a panel

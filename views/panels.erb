@@ -15,13 +15,18 @@
     <tbody>
       <% @panels.each do |panel| %>
         <tr>
-        <td>TODO</td>
+        <td>
+          <img width="100" src="/images/panels/<%= panel.folder_name %>/<%= panel.images.first.file_normal %>"/>
+        </td>
         <td>
           <span id="<%= panel.id%>" class="switch-is-active glyphicon <%= panel.is_active ? 'glyphicon-check' : 'glyphicon-unchecked' %> is-clickable"></span>
         </td>
         <td><%= panel.title %></td>
         <td><%= panel.images.size %></td>
-        <td><span class="glyphicon glyphicon-screenshot is-clickable sortable-handler"></span></td>
+        <td>
+          <span class="id display-none"><%= panel.id %></span>
+          <span class="glyphicon glyphicon-screenshot is-clickable sortable-handler"></span>
+        </td>
         <td>
           <a href="/admin/gallery/<%= panel.id%>" class="btn" title="Editer">
             <span class="glyphicon glyphicon-pencil"></span>

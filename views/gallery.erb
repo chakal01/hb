@@ -1,6 +1,9 @@
 <script>
   $(document).ready(function(){
-    $("a.grouped_elements").fancybox();
+    $("a.grouped_elements").fancybox({
+      transitionIn: 'none',
+      transitionOut: 'none'
+    });
   });
 </script>
 <style type="text/css">
@@ -27,9 +30,9 @@
 
 
       <div class="image">
-        <% panel.images.each do |img| %>
+        <% panel.images.each_with_index do |img, index| %>
           <% csrc = "images/panels/#{panel.folder_name}/#{img.file_normal}" %>
-          <a class="grouped_elements" rel="group_<%= panel.id%>" href="<%= csrc %>"><img width="500" src="<%= csrc %>" alt="<%= img.name %>"/></a>
+          <a class="grouped_elements <%= index==0 ? '' : 'display-none' %>" rel="group_<%= panel.id%>" href="<%= csrc %>"><img width="500" src="<%= csrc %>" alt="<%= img.name %>"/></a>
         <% end %>
         
       </div>

@@ -12,4 +12,33 @@ $(document).ready(function(){
     });
   });
 
+
+  /* Sortable table */
+  /* Return a helper with preserved width of cells */
+  var fixHelper = function(e, ui) {
+    ui.children().each(function() {
+      $(this).width($(this).width());
+    });
+    return ui;
+  };
+
+  $("#sortable tbody").sortable({
+    helper: fixHelper,
+    handle: ".sortable-handler",
+    stop: function(){
+      var list = [];
+      $(".id").each(function(elem){
+        list.push($(this).html());
+      });
+      $.ajax({
+        method: 'post',
+        url: "/admin/gallery/order",
+        data: {"list": list}
+      });
+    }
+  }).disableSelection();
+
+
+
+
 });
