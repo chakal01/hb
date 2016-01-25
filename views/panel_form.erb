@@ -1,25 +1,43 @@
 <%= erb :admin_layout %>
 <%= js :panel_form %>
 
-<h2><%= @title_form%></h2>
+<div class="main-content">
+  <h2><%= @title_form%></h2>
 
+  <form class="form-horizontal" method="post">
+    <div class="form-group">
+      <label for="title" class="col-sm-3 control-label">Titre</label>
+      <div class="col-sm-9">
+        <input type="text" name="title" class="form-control" id="title" value="<%= @panel.title%>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="subtitle" class="col-sm-3 control-label">Sous-titre</label>
+      <div class="col-sm-9">
+        <input type="text" name="subtitle" class="form-control" id="subtitle" value="<%= @panel.subtitle%>">
+      </div>
+    </div>
 
-<form class="form-horizontal" method="post">
-  <div class="form-group">
-    <label for="title" class="col-sm-3 control-label">Titre</label>
-    <div class="col-sm-9">
-      <input type="text" name="title" class="form-control" id="title" value="<%= @panel.title%>">
+    <div class="form-group">
+      <label for="subtitle" class="col-sm-3 control-label">Vignette</label>
+      <div class="col-sm-9">
+        <% @panel.images.each do |image| %>
+          <div class="radio">
+            <label>
+              <input type="radio" name="icon_id" value="<%= image.id%>" <%= "checked" if @panel.icon_id==image.id %> >
+              <img width="100" src="/images/panels/<%= @panel.folder_name %>/<%= image.file_vignette %>"/>
+            </label>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="subtitle" class="col-sm-3 control-label">Sous-titre</label>
-    <div class="col-sm-9">
-      <input type="text" name="subtitle" class="form-control" id="subtitle" value="<%= @panel.subtitle%>">
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button type="submit" class="btn btn-default"><%= @cta_form %></button>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <button type="submit" class="btn btn-default"><%= @cta_form %></button>
-    </div>
-  </div>
-</form>
+
+  </form>
+
+</div>

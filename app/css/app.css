@@ -32,6 +32,7 @@ html, body{
   color: #e4d8d9;
   padding: 20px;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 .header > h1 {
   margin: 0px;
@@ -58,11 +59,61 @@ html, body{
   font-size: 12px;
 }
 
-
+.max-width-500{ max-width: 500px; }
 .margin-top-20{margin-top: 20px;}
 .display-none{display: none;}
 
 .form-width{
   width: 400px;
   margin: auto; 
+}
+
+/* Carousel */
+.carousel-inner {
+  width: 800px;
+  height: 340px;
+  max-height: 340px;
+  overflow: hidden;
+}
+.carousel-inner img{
+  width: 800px;
+}
+
+  
+.intro-site{
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.section > .title{
+  font-weight: bold;
+  margin-top: 20px;
+  color: #794044;
+}
+.section > .content{
+  padding-top: 10px;
+  padding-left: 30px;
+}
+
+
+.button-to-gallery{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.button-to-gallery > a{
+  width: 30%;
+  padding: 15px 0px 15px 0px;
+}
+
+/* Gallery */
+.div-panel{
+  padding-top: 50px;
+  text-align: center;
+}
+.div-panel > .title{
+  font-weight: bold;
+  font-size: 18px;
+}
+.div-panel > .subtitle{
+  font-size: 14px;
 }

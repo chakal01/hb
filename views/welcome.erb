@@ -1,57 +1,9 @@
-<script>
-  $(document).ready(function(){
-    $('.carousel').carousel({
-      interval: 5000
-    });
-  });
-</script>
-<style>
-
-
-  .carousel-inner {
-    width: 800px;
-    height: 340px;
-    max-height: 340px;
-    overflow: hidden;
-  }
-  .carousel-inner img{
-    width: 800px;
-  }
-
-  
-  .intro-site{
-    padding-top: 20px;
-    padding-bottom: 40px;
-  }
-  .section > .title{
-    font-weight: bold;
-    margin-top: 20px;
-    color: #794044;
-  }
-  .section > .content{
-    padding-top: 10px;
-    padding-left: 30px;
-  }
-
-  .button-to-gallery{
-    text-align: center
-  }
-  .button-to-gallery > a{
-    width: 30%;
-    padding: 15px 0px 15px 0px;
-  }
-
-</style>
-
-
-
-
   <div id="carousel" class="carousel slide is-clickable" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel" data-slide-to="1"></li>
-      <li data-target="#carousel" data-slide-to="2"></li>
+      <% (0..@images.length-1).each do |i| %>
+        <li data-target="#carousel" data-slide-to="<%= i %>" class="<%= i==0 ? 'active': '' %>" ></li>
+      <% end %>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -91,7 +43,7 @@
         <div class="row"> 
         <div class="col-sm-4"> 
           <%= @address %>
-        
+          <br>
           <a class="btn btn-default margin-top-20" href="/contact" >Me contacter</a>
         </div>
         <div class="col-sm-8">Ici la carte gmaps</div> 
@@ -102,4 +54,3 @@
     
   </div>
 
-</div>

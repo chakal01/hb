@@ -6,20 +6,6 @@
     });
   });
 </script>
-<style type="text/css">
-  .div-panel{
-    padding-top: 50px;
-    text-align: center;
-  }
-  .div-panel > .title{
-    font-weight: bold;
-    font-size: 18px;
-  }
-  .div-panel > .subtitle{
-    font-size: 14px;
-  }
-
-</style>
 
 <div class="main-content">
 
@@ -30,9 +16,9 @@
 
 
       <div class="image">
-        <% panel.images.each_with_index do |img, index| %>
+        <% panel.images.each do |img| %>
           <% csrc = "images/panels/#{panel.folder_name}/#{img.file_normal}" %>
-          <a class="grouped_elements <%= index==0 ? '' : 'display-none' %>" rel="group_<%= panel.id%>" href="<%= csrc %>"><img width="500" src="<%= csrc %>" alt="<%= img.name %>"/></a>
+          <a class="grouped_elements <%= img.id==panel.icon_id ? '' : 'display-none' %>" rel="group_<%= panel.id%>" href="<%= csrc %>"><img class="max-width-500" src="<%= csrc %>" alt="<%= img.name %>"/></a>
         <% end %>
         
       </div>

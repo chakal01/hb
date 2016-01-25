@@ -168,7 +168,7 @@ class App < Sinatra::Base
     # Create a new panel
     post '/gallery/new' do
       puts "#{params}"
-      Panel.create(params.slice("title", "subtitle", "vignette_id", "date"))
+      Panel.create(params.slice("title", "subtitle", "icon_id", "date"))
       flash[:notice] = "Panel créé."
       redirect '/admin/gallery'
     end
@@ -202,7 +202,7 @@ class App < Sinatra::Base
     # Update a panel
     post '/gallery/:id' do
       @panel = Panel.find(params[:id])
-      @panel.update_attributes(params.slice("title", "subtitle", "vignette_id", "date"))
+      @panel.update_attributes(params.slice("title", "subtitle", "icon_id", "date"))
       flash[:notice] = "Panel sauvé."
       redirect '/admin/gallery'
     end
@@ -257,6 +257,11 @@ class App < Sinatra::Base
         i.resize_to_fit(vignette_size,vignette_size).write("./app/images/panels/#{@panel.folder_name}/#{img.file_vignette}")
       else
         i.write("./app/images/panels/#{@panel.folder_name}/#{img.file_icon}")
+      end
+
+      if @panel.images.length == 1
+        @panel.icon_id = img.id
+        @panel.save
       end
 
       flash[:notice] = "Image enregistrée"
