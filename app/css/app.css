@@ -1,5 +1,6 @@
 html, body{
-  background-color: #e4d8d9;
+  background-color: #2d2b2b;
+  color: #e4d8d9;
   margin: 0px;
   height: 100%;
   padding: 0px;
@@ -10,7 +11,6 @@ html, body{
 .everything{
   width: 800px;
   margin: auto;
-  background-color: #FFF;
   padding-bottom: 20px;
 }
 
@@ -28,7 +28,7 @@ html, body{
 
 .header{
   width: 100%;
-  background-color: #794044;
+  text-align: center;
   color: #e4d8d9;
   padding: 20px;
   padding-top: 30px;
@@ -43,14 +43,14 @@ html, body{
 
 /* Buttons */
 .btn{
-  border-color: #794044;
-  color: #794044;
+  background-color: #2d2b2b;
+  color: #e4d8d9;
   font-size: 16px;
 }
 .btn:hover{
-  background-color: #e4d8d9;
-  border-color: #794044;
+  background-color: #444041;
   color: #794044;
+  color: #e4d8d9;
 }
 
 .footer{
@@ -70,13 +70,14 @@ html, body{
 
 /* Carousel */
 .carousel-inner {
-  width: 800px;
+  width: 60%;
   height: 340px;
   max-height: 340px;
   overflow: hidden;
-}
-.carousel-inner img{
-  width: 800px;
+  text-align: center;
+  left: 50%;
+  width: 60%;
+  margin-left: -30%;
 }
 
   
