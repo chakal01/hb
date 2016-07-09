@@ -71,7 +71,6 @@ class App < Sinatra::Base
     @title = Constant.get('title')
     @meta_description = Constant.get('meta_description')
     @meta_keywords = Constant.get('meta_keywords')
-    @title = Constant.get('title')
 
     if config["file_logger"]
       env["rack.errors"] = error_logger
@@ -88,7 +87,16 @@ class App < Sinatra::Base
   end
 
   get '/galerie' do
-    @panels = Panel.where(is_active: true).order(:ordre)
+    @page_title="Mobilier"
+    @other_link = {href: "/decoration", label: "Objets de décoration"}
+    @panels = Panel.where(panel_type: "mobilier", is_active: true).order(:ordre)
+    erb :gallery
+  end
+
+  get '/decoration' do
+    @page_title="Objets de décoration"
+    @other_link = {href: "/galerie", label: "Mobilier"}
+    @panels = Panel.where(panel_type: "decoration", is_active: true).order(:ordre)
     erb :gallery
   end
 

@@ -14,8 +14,8 @@ html, body{
   padding-bottom: 20px;
 }
 
-.main-content{
-  padding: 20px;
+#carousel{
+  margin-top: 30px;
 }
 
 .div-content{
@@ -30,9 +30,7 @@ html, body{
   width: 100%;
   text-align: center;
   color: #e4d8d9;
-  padding: 20px;
   padding-top: 30px;
-  padding-bottom: 30px;
 }
 .header > h1 {
   margin: 0px;
@@ -84,6 +82,7 @@ html, body{
 .intro-site{
   padding-top: 20px;
   padding-bottom: 40px;
+  text-align: center;
 }
 .section > .title{
   font-weight: bold;
@@ -103,10 +102,19 @@ html, body{
 }
 .button-to-gallery > a{
   width: 30%;
+  font-size: 24px;
+  margin: 10px;
   padding: 15px 0px 15px 0px;
 }
 
 /* Gallery */
+.links{
+  margin-top: 30px;
+  text-align: center;
+}
+.links h2{
+  margin-bottom: 20px;
+}
 .div-panel{
   padding-top: 50px;
   text-align: center;

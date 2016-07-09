@@ -2,13 +2,14 @@
     <h1><span class="glyphicon glyphicon-wrench"></span>Admin</h1>
 </div>
 
-<ul>
-  <li><a href="/admin/gallery">Galerie</a></li>
-  <li><a href="/admin/constants">Textes</a></li>
-  <li><a href="/admin/notifications">Notifications</a></li>
-  <li><a href="/admin/images">Images d'accueil</a></li>
-  <li><a href="/">Retour au site</a></li>
-</ul>
+
+<% [{link: "/admin/gallery", label: "Galerie"},
+    {link: "/admin/constants", label: "Textes"},
+    {link: "/admin/notifications", label: "Notifications"},
+    {link: "/admin/images", label: "Images d'accueil"},
+    {link: "/", label: "Retour au site"}].each do |btn|  %>
+  <a href="<%= btn[:link] %>" class="btn btn-default"><%= btn[:label] %></a>
+<% end %>
 
 <%= js :admin %>
 

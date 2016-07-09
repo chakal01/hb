@@ -6,10 +6,11 @@
   <table class="table" id="sortable">
       <thead>
         <tr>
+          <th>Type</th>
           <th>Vignette</th>
           <th title="Active tes panels pour les rendres visible aux visiteurs.">Actif</th>
           <th>Titre</th>
-          <th>Nombre d'images</th>
+          <th>Images</th>
           <th>Trier</th>
           <th>Actions</th>
         </tr>
@@ -17,6 +18,7 @@
       <tbody>
         <% @panels.each do |panel| %>
           <tr>
+          <td><%= panel.panel_type %></td>
           <td>
             <% if panel.images.size > 0 %>
               <img width="100" src="/images/panels/<%= panel.folder_name %>/<%= panel.images.first.file_normal %>"/>
@@ -29,7 +31,9 @@
           <td><%= panel.images.size %></td>
           <td>
             <span class="id display-none"><%= panel.id %></span>
-            <span class="glyphicon glyphicon-screenshot is-clickable sortable-handler"></span>
+            <a class="btn  is-clickable sortable-handler" title="Cliquer - Déplacer pour changer l'ordre">
+              <span class="glyphicon glyphicon-screenshot"></span>
+            </a>
           </td>
           <td>
             <a href="/admin/gallery/<%= panel.id%>" class="btn" title="Editer">
