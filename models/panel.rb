@@ -13,6 +13,7 @@ class Panel < ActiveRecord::Base
       self.folder_name = I18n.transliterate(self.title).downcase.gsub(/ /, '_')
       self.is_active = false
       self.ordre = Panel.count
+      self.panel_type ||= "mobilier"
     end
 
     def create_folder

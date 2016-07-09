@@ -18,6 +18,22 @@
         <input type="text" name="subtitle" class="form-control" id="subtitle" value="<%= @panel.subtitle%>">
       </div>
     </div>
+    
+    <div class="form-group">
+      <label for="subtitle" class="col-sm-3 control-label">Type</label>
+      <div class="col-sm-9">
+        <label class="radio-inline">
+          <input type="radio" name="panel_type" value="mobilier" <%= @panel.panel_type=="mobilier" ? "checked" : "" %> > Mobilier
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="panel_type" value="decoration" <%= @panel.panel_type=="decoration" ? "checked" : "" %> > Objet de décoration
+        </label>
+      </div>
+    </div>
+
+
+
+
 
     <div class="form-group">
       <label for="subtitle" class="col-sm-3 control-label">Vignette</label>

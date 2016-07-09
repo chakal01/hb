@@ -88,14 +88,14 @@ class App < Sinatra::Base
 
   get '/galerie' do
     @page_title="Mobilier"
-    @other_link = {href: "/decoration", label: "Objets de décoration"}
+    @mob_off, @deco_off = "off", ""
     @panels = Panel.where(panel_type: "mobilier", is_active: true).order(:ordre)
     erb :gallery
   end
 
   get '/decoration' do
     @page_title="Objets de décoration"
-    @other_link = {href: "/galerie", label: "Mobilier"}
+    @mob_off, @deco_off = "", "off"
     @panels = Panel.where(panel_type: "decoration", is_active: true).order(:ordre)
     erb :gallery
   end
@@ -176,7 +176,7 @@ class App < Sinatra::Base
     # Create a new panel
     post '/gallery/new' do
       puts "#{params}"
-      Panel.create(params.slice("title", "subtitle", "icon_id", "date"))
+      Panel.create(params.slice("title", "subtitle", "icon_id", "date", "panel_type"))
       flash[:notice] = "Panel créé."
       redirect '/admin/gallery'
     end
@@ -210,7 +210,7 @@ class App < Sinatra::Base
     # Update a panel
     post '/gallery/:id' do
       @panel = Panel.find(params[:id])
-      @panel.update_attributes(params.slice("title", "subtitle", "icon_id", "date"))
+      @panel.update_attributes(params.slice("title", "subtitle", "icon_id", "date", "panel_type"))
       flash[:notice] = "Panel sauvé."
       redirect '/admin/gallery'
     end

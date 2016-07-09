@@ -11,7 +11,8 @@
 
   <div class="links">
     <a href="/" class="btn btn-default" >Accueil</a>
-    <a href="<%= @other_link[:href] %>" class="btn btn-default" ><%= @other_link[:label] %></a>
+    <a href="/galerie" class="btn btn-default <%= @mob_off%>" >Mobilier</a>
+    <a href="/decoration" class="btn btn-default <%= @deco_off%>" >Objets de décoration</a>
     <h2><%= @page_title %></h2>
   </div>
   <% @panels.each do |panel| %>
@@ -30,7 +31,6 @@
       <div class="title" ><%= panel.title %></div>
       <div class="subtitle" ><%= panel.subtitle %></div>
     </div>
-    <hr>
   <% end %>
 
 </div>
