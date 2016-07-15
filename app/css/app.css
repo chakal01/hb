@@ -139,3 +139,7 @@ html, body{
 .div-panel > .subtitle{
   font-size: 14px;
 }
+
+.map, #map{
+  height: 200px;
+}

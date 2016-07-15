@@ -80,6 +80,7 @@ class App < Sinatra::Base
 
   get '/' do
     @images = Image.where(is_on_welcome_screen: true).order(:id)
+    @gmap_key = config["gmap_key"]
     @text_welcome = Constant.get('text_welcome')
     @news = Constant.get('news')
     @address = Constant.get('address')
