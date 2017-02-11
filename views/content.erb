@@ -1,0 +1,25 @@
+
+<%= js :fancybox %>
+<h2><%= @page_title %></h2>
+
+<div class="gallery">
+
+
+
+    <% @panels.each_slice( @panels.length/3 ).each do |group| %>
+
+        <div>
+            <% group.each do |panel| %>
+
+                    <% panel.images.each do |img| %>
+                        <% csrc = "images/panels/#{panel.folder_name}/#{img.file_normal}" %>
+                        <a class="grouped_elements <%= img.id==panel.icon_id ? '' : 'display-none' %>" rel="group_<%= panel.id%>" href="<%= csrc %>">
+                            <img class="max-width-500" src="<%= csrc %>" alt="<%= img.name %>"/>
+                        </a>
+                    <% end %>
+
+            <% end %>
+
+        </div>
+    <% end %>
+</div>

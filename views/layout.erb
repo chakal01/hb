@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title%></title>
-  <meta name="description" content="<%= @meta_description%>">
-  <meta name="keywords" content="<%=@meta_keywords%>">
+  <title>Hervé Bonnot - Création</title>
+  <meta name="description" content="La meta description de mon site">
+  <meta name="keywords" content="création meuble décoration unique">
   <meta name="author" content="Hervé Bonnot">
   <link rel="icon" type="image/png" href="/images/favicon.ico" />
-  <link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
-  <%= css :layout %>
-  <%= js :layout %>
-
+  <%= css :application %>
 </head>
 <body>
 
-  <div class="everything">
+  <div class="middle">
 
     <div class="header">
-      <h1>Hervé Bonnot</h1>
-      <h3>Ebéniste d'art</h3>
+        <h1 class="title">
+            <img src="/images/branchette.png">
+            HERVE BONNOT
+            <img src="/images/branchette.png" class="reverse">
+        </h1>
+        <%= erb :_links %>
     </div>
 
-    <%= yield %>
+    <div class="content">
+        <%= yield %>
+    </div>
 
     <div class="footer">
-      Hervé Bonnot - 2016
-    </div>
+        <div>
+            <span class="footer-title">Hervé Bonnot</span>
+            7, Route de Chevigny<br>
+            21800 Sennecy les Dijon<br>
+            <br>
+            Tel: 06 64 98 45 21<br>
+            Mail: creation.hb@free.fr<br>
+        </div>
 
-  </div>
+        <div>
+            <span class="footer-title">Liens</span>
+            Mon site de mosaïque :<br>
+            <a href="http://creation.hb.free.fr" style="margin-left: 10px;" target="_blank">creation.hb.free.fr</a>
+        </div>
 
+        <div>
+            <span class="footer-title">Plan du site</span>
+            <%= erb :_links %>
+        </div>
+
+    </div> 
+
+</div>
 </body>
 </html>
-

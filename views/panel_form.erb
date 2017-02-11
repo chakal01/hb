@@ -1,4 +1,3 @@
-<%= erb :admin_layout %>
 <%= js :panel_form %>
 
 <div class="main-content">
@@ -23,10 +22,13 @@
       <label for="subtitle" class="col-sm-3 control-label">Type</label>
       <div class="col-sm-9">
         <label class="radio-inline">
-          <input type="radio" name="panel_type" value="mobilier" <%= @panel.panel_type=="mobilier" ? "checked" : "" %> > Mobilier
+          <input type="radio" name="panel_type" value="atelier" <%= @panel.panel_type=="atelier" ? "checked" : "" %> > Atelier
         </label>
         <label class="radio-inline">
-          <input type="radio" name="panel_type" value="decoration" <%= @panel.panel_type=="decoration" ? "checked" : "" %> > Objet de décoration
+          <input type="radio" name="panel_type" value="meuble" <%= @panel.panel_type=="meuble" ? "checked" : "" %> > Meuble
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="panel_type" value="decoration" <%= @panel.panel_type=="decoration" ? "checked" : "" %> > Décoration
         </label>
       </div>
     </div>

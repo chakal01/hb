@@ -44,8 +44,13 @@ class App < Sinatra::Base
 
     js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery-ui.min.js', '/js/jquery.fancybox.pack.js' ]
     css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
-    js :admin, ['/js/admin.js']
-    js :contact, ['/js/contact.js']
+    js :admin, ['/js/jquery-1.11.2.min.js', '/js/admin.js']
+    js :contact, ['/js/jquery-1.11.2.min.js', '/js/contact.js']
+
+    css :application, ['/css/application.css']
+    js :fancybox, ['/js/jquery-1.11.2.min.js', '/js/jquery.fancybox.pack.js']
+    css :fancybox, ['/css/jquery.fancybox.css']
+    css :bootstrap, ['/css/bootstrap.min.css']
 
     js_compression :jsmin
     css_compression :sass
@@ -68,10 +73,6 @@ class App < Sinatra::Base
   end
 
   before do
-    @title = Constant.get('title')
-    @meta_description = Constant.get('meta_description')
-    @meta_keywords = Constant.get('meta_keywords')
-
     if config["file_logger"]
       env["rack.errors"] = error_logger
     end
@@ -84,21 +85,30 @@ class App < Sinatra::Base
     @text_welcome = Constant.get('text_welcome')
     @news = Constant.get('news')
     @address = Constant.get('address')
-    erb :welcome
+    erb :accueil
   end
 
-  get '/galerie' do
-    @page_title="Mobilier"
-    @mob_off, @deco_off = "off", ""
-    @panels = Panel.where(panel_type: "mobilier", is_active: true).order(:ordre)
-    erb :gallery
+  get '/meubles' do
+    @page_title="Meubles"
+    @panels = Panel.where(panel_type: "meuble", is_active: true).order(:ordre)
+    erb :content
+  end
+
+  get '/atelier' do
+    @page_title="Atelier"
+    @panels = Panel.where(panel_type: "atelier", is_active: true).order(:ordre)
+    erb :content
   end
 
   get '/decoration' do
-    @page_title="Objets de décoration"
-    @mob_off, @deco_off = "", "off"
+    @page_title="Décoration"
     @panels = Panel.where(panel_type: "decoration", is_active: true).order(:ordre)
-    erb :gallery
+    erb :content
+  end
+
+  get '/evenements' do
+    @news = Constant.get('news')
+    erb :evenements
   end
 
   get '/contact' do
@@ -148,7 +158,7 @@ class App < Sinatra::Base
     # List all constantes
     get '/constants' do
       @constants = Constant.all.order(:id)
-      erb :constants
+      erb :constants, layout: :admin_layout
     end
 
     # Update constants
@@ -164,14 +174,14 @@ class App < Sinatra::Base
     # List all panels
     get '/gallery' do
       @panels = Panel.all
-      erb :panels
+      erb :panels, layout: :admin_layout
     end
 
     # View form for a new panel
     get '/gallery/new' do
       @panel = Panel.new
       @title_form, @cta_form = "Création", "Créer"
-      erb :panel_form
+      erb :panel_form, layout: :admin_layout
     end
 
     # Create a new panel
@@ -205,7 +215,7 @@ class App < Sinatra::Base
       @panel = Panel.find(params[:id])
       @title_form, @cta_form = "Editer", "Enregistrer"
       redirect '/admin/gallery' if @panel.nil?
-      erb :panel_form
+      erb :panel_form, layout: :admin_layout
     end
 
     # Update a panel
@@ -227,7 +237,7 @@ class App < Sinatra::Base
     # List all images of a panel
     get '/gallery/:id/image' do
       @panel = Panel.find(params[:id])
-      erb :image
+      erb :image, layout: :admin_layout
     end
 
     # Create a new image
@@ -296,7 +306,7 @@ class App < Sinatra::Base
     # List all images
     get '/images' do
       @images = Image.all.order(:id)
-      erb :select_images
+      erb :select_images, layout: :admin_layout
     end
 
     # Toggle image appearance on welcome screen
@@ -309,7 +319,7 @@ class App < Sinatra::Base
 
     get '/notifications' do
       @notifications = Notification.order(:created_at).reverse
-      erb :notifications
+      erb :notifications, layout: :admin_layout
     end
 
     get '/notification/:id/delete' do

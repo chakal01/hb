@@ -1,16 +1,36 @@
-<div class="margin-left-50">
-    <h1><span class="glyphicon glyphicon-wrench"></span>Admin</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hervé Bonnot - Création</title>
+  <meta name="description" content="La meta description de mon site">
+  <meta name="keywords" content="création meuble décoration unique">
+  <meta name="author" content="Hervé Bonnot">
+  <link rel="icon" type="image/png" href="/images/favicon.ico" />
+  <%=css :bootstrap %>
+  <%= css :application %>
+  <%= js :admin %>
+</head>
+<body>
+
+  <div class="middle admin_content">
+
+    <div class="margin-left-50">
+      <h1><span class="glyphicon glyphicon-wrench" style="margin-right: 10px;"></span>Admin</h1>
+    </div>
+
+
+    <% [{link: "/admin/gallery", label: "Galerie"},
+        {link: "/admin/constants", label: "Textes"},
+        {link: "/admin/notifications", label: "Notifications"},
+        # {link: "/admin/images", label: "Images d'accueil"},
+        {link: "/", label: "Retour au site"}].each do |btn|  %>
+      <a href="<%= btn[:link] %>" class="btn btn-default"><%= btn[:label] %></a>
+    <% end %>
+
+<hr></hr>
+  
+    <%= yield %>
 </div>
-
-
-<% [{link: "/admin/gallery", label: "Galerie"},
-    {link: "/admin/constants", label: "Textes"},
-    {link: "/admin/notifications", label: "Notifications"},
-    {link: "/admin/images", label: "Images d'accueil"},
-    {link: "/", label: "Retour au site"}].each do |btn|  %>
-  <a href="<%= btn[:link] %>" class="btn btn-default"><%= btn[:label] %></a>
-<% end %>
-
-<%= js :admin %>
-
-<hr>
+</body>
+</html>

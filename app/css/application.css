@@ -1,0 +1,121 @@
+body{
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: #111 !important;
+    font-family: 'Montserrat', sans-serif;
+}
+.middle{
+    display: block;
+    margin-top: 0px;
+    top: 0px;
+    width: 800px;
+    margin: auto;
+}
+.admin_content{
+  padding: 10px;
+  background-color: #555;
+  color: #eee;
+}
+.is-clickable{
+  cursor: pointer;
+}
+.display-none{
+  display: none;
+}
+a{
+    text-decoration: none !important;
+    color: #bbb !important;
+}
+.header > ul{
+    list-style: none;
+    background: rgba(150,150,150,0.2);
+    color: #bbb;
+    width: 600px;
+    margin: auto;
+    padding: 5px;
+    margin-top: 40px;
+    text-align: center;
+}
+li{
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.header{
+    background-image: url('/images/fond_atelier.png');
+    text-align: center;
+    height: 130px;
+    padding: 30px;
+}
+.title{
+    color: #ddd;
+    margin: 0px;
+    font-weight: normal;
+    display: block;
+    font-size: 30pt;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(150,150,150,0.2);
+}
+.title img {
+    width: 110px;
+}
+.reverse{
+    transform: scaleX(-1);
+}
+.footer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    font-size: 10pt;
+    align-items: flex-start;
+    padding-top: 20px;
+    width: 800px;
+    background-color: inherit;
+    color: #ddd;
+}
+.footer-title {
+    font-size: 14pt;
+    display: block;
+    margin-bottom: 10px;
+}
+.footer ul > li{
+    list-style: none;
+    display: block;
+}
+
+.content{
+    background-color: #bbb;
+    margin: 0px !important;
+}
+.content h2 {
+    color: #eee;
+    text-align: center;
+    padding: 20px;
+}
+.gallery img{
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.gallery{
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.gallery div{
+    width: 33.33%;
+    padding: 8px;
+}
+
+
+
+h2{
+    display: block;
+    margin: 0px;
+}
