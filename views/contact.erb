@@ -1,5 +1,5 @@
 <%= js :contact %>
-<%= css :contact %>
+<%= css :bootstrap %>
 
 <%= erb :flash %>
 
@@ -11,18 +11,18 @@
 
     <div class="form-group">
       <div class="col-sm-12">
-        <input type="email" class="form-control" id="email" title="Email" name="email" placeholder="Email" value="<%= cookies[:email] %>">
+        <input type="email" class="form-control" id="email" title="Email" name="email" placeholder="Email" value="<%= cookies[:email] %>" />
       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-12">
-        <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" title="Email de confirmation" placeholder="Confirmation email" value="<%= cookies[:confirmEmail] %>" data-toggle="tooltip" data-placement="right" title="Les adresses ne sont pas identiques">
+        <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" title="Email de confirmation" placeholder="Confirmation email" value="<%= cookies[:confirmEmail] %>" data-toggle="tooltip" data-placement="right" title="Les adresses ne sont pas identiques" />
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-sm-12">
-        <input type="text" name="title" class="form-control" placeholder="Titre" title="Titre" value="<%= cookies[:title] %>">
+        <input type="text" name="title" class="form-control" placeholder="Titre" title="Titre" value="<%= cookies[:title] %>" />
       </div>
     </div>
 
@@ -36,7 +36,7 @@
       <div class="col-sm-12">
         <%= captcha_image_tag %>
         <div class="col-sm-offset-4">
-          <input id="captcha-answer" class="form-control margin-top-25" name="captcha_answer" placeholder="Code de sécurité" type="text" size="10" title="Le code de sécurité permet d'éviter que des programmes malveillants envoient des messages de spam. Merci de simplement recopier les chiffres affichés dans l'image par égard pour la boite mail de copeaux d'aronde ! "/>
+          <input id="captcha-answer" class="form-control margin-top-25" name="captcha_answer" placeholder="Code de sécurité" type="text" size="10" title="Le code de sécurité permet d'éviter que des programmes malveillants envoient des messages de spam. Merci de simplement recopier les chiffres affichés dans l'image par égard pour la boite mail de copeaux d'aronde ! " />
 
         </div>
       </div>
