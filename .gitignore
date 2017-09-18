@@ -6,6 +6,7 @@ config/database.yml
 config/application.yml
 db/schema.rb
 /app/images/panels/**/*.*
+/app/images/bg-accueil.jpg
 Capfile
 config
 config/deploy.rb

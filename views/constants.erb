@@ -3,7 +3,7 @@
 
   <%= erb :flash %>
 
-  <form method="post" class="form-horizontal">
+  <form method="post" class="form-horizontal" enctype="multipart/form-data">
 
     <% @constants.each do |constant| %>
     <div class="form-group">
@@ -13,6 +13,8 @@
           <textarea class="form-control col-sm-12" rows="7" id="<%= constant.key %>" name="<%= constant.key %>"><%= constant.value %></textarea>
         <% elsif constant.input_type=="color" %>
           <input type="color" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
+        <% elsif constant.input_type=="image" %>
+          <input type="file" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% else %>
           <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% end %>

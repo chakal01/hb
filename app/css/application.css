@@ -108,10 +108,10 @@ li{
     padding-bottom: 10px;
     width: 100%;
 }
-
 .gallery{
     padding: 10px;
     display: flex;
+    min-height: 400px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -120,6 +120,10 @@ li{
 .gallery div{
     width: 33.33%;
     padding: 8px;
+}
+.event-content{
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 

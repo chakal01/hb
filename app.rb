@@ -44,7 +44,7 @@ class App < Sinatra::Base
 
     js :layout, ['/js/jquery-1.11.2.min.js', '/js/bootstrap.min.js', '/js/jquery-ui.min.js', '/js/jquery.fancybox.pack.js' ]
     css :layout, ['/css/bootstrap.min.css', '/css/jquery.fancybox.css', '/css/app.css']
-    js :admin, ['/js/jquery-1.11.2.min.js', '/js/admin.js']
+    js :admin, ['/js/jquery-1.11.2.min.js', '/js/jquery-ui.min.js', '/js/admin.js']
     js :contact, ['/js/jquery-1.11.2.min.js', '/js/contact.js']
 
     css :application, ['/css/application.css']
@@ -86,6 +86,7 @@ class App < Sinatra::Base
     @news = Constant.get('news')
     @address = Constant.get('address')
     @bgColor = Constant.get('bgAccueil')
+    @imgAccueil = Constant.get('imgAccueil')
     erb :accueil
   end
 
@@ -170,6 +171,14 @@ class App < Sinatra::Base
     post '/constants' do
       params.each do |key, value|
         c = Constant.find_by(key: key)
+        if c.key == "imgAccueil"
+          # Save image
+          fileType = value[:filename].split('.')[-1]
+          File.open("./app/images/bg-accueil.#{fileType}", "wb") do |f|
+            f.write(value[:tempfile].read)
+          end
+          value = 'images/bg-accueil.' + fileType
+        end
         c.update_attributes({value: value}) unless c.nil?
       end
       flash[:notice] = "Sauvegardé"
