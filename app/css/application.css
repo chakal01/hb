@@ -4,6 +4,10 @@ body{
     background-color: #111 !important;
     font-family: 'Montserrat', sans-serif;
 }
+@font-face {
+    font-family: 'staccato';
+    src: url(../fonts/staccato-222-bt.ttf);
+}
 .middle{
     display: block;
     margin-top: 0px;
@@ -12,6 +16,7 @@ body{
     margin: auto;
 }
 .admin_content{
+  width: 900px;
   padding: 10px;
   background-color: #555;
   color: #eee;
@@ -80,6 +85,10 @@ li{
     font-size: 14pt;
     display: block;
     margin-bottom: 10px;
+}
+.staccato {
+    font-family: 'staccato';
+    font-size: 20pt;
 }
 .footer ul > li{
     list-style: none;

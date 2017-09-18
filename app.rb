@@ -85,28 +85,33 @@ class App < Sinatra::Base
     @text_welcome = Constant.get('text_welcome')
     @news = Constant.get('news')
     @address = Constant.get('address')
+    @bgColor = Constant.get('bgAccueil')
     erb :accueil
   end
 
   get '/meubles' do
     @page_title="Meubles"
+    @bgColor = Constant.get('bgMeubles')
     @panels = Panel.where(panel_type: "meuble", is_active: true).order(:ordre)
     erb :content
   end
 
   get '/atelier' do
     @page_title="Atelier"
+    @bgColor = Constant.get('bgAtelier')
     @panels = Panel.where(panel_type: "atelier", is_active: true).order(:ordre)
     erb :content
   end
 
   get '/decoration' do
     @page_title="Décoration"
+    @bgColor = Constant.get('bgDecoration')
     @panels = Panel.where(panel_type: "decoration", is_active: true).order(:ordre)
     erb :content
   end
 
   get '/evenements' do
+    @bgColor = Constant.get('bgEvenements')
     @news = Constant.get('news')
     erb :evenements
   end

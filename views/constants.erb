@@ -11,6 +11,8 @@
       <div class="col-sm-9">
         <% if constant.input_type=="textarea" %>
           <textarea class="form-control col-sm-12" rows="7" id="<%= constant.key %>" name="<%= constant.key %>"><%= constant.value %></textarea>
+        <% elsif constant.input_type=="color" %>
+          <input type="color" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% else %>
           <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% end %>
