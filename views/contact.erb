@@ -1,47 +1,17 @@
 <%= js :contact %>
-<%= css :bootstrap %>
 
 <%= erb :flash %>
 
 
 <div class="main-content">
+  <form method="post" class="form" action="/contact">
+    <p><%= @text_intro_contact %></p>
 
-  <p><%= @text_intro_contact %></p>
-  <form method="post" class="form-horizontal form-width" action="/contact">
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <input type="email" class="form-control" id="email" title="Email" name="email" placeholder="Email" value="<%= cookies[:email] %>" />
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-12">
-        <input type="email" class="form-control" id="confirmEmail" name="confirmEmail" title="Email de confirmation" placeholder="Confirmation email" value="<%= cookies[:confirmEmail] %>" data-toggle="tooltip" data-placement="right" title="Les adresses ne sont pas identiques" />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <input type="text" name="title" class="form-control" placeholder="Titre" title="Titre" value="<%= cookies[:title] %>" />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <textarea class="form-control" name="content" title="Contenu du message" placeholder="Votre texte ici" rows="10"><%= cookies[:content] %></textarea>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-sm-12">
-        <%= captcha_image_tag %>
-        <div class="col-sm-offset-4">
-          <input id="captcha-answer" class="form-control margin-top-25" name="captcha_answer" placeholder="Code de sécurité" type="text" size="10" title="Le code de sécurité permet d'éviter que des programmes malveillants envoient des messages de spam. Merci de simplement recopier les chiffres affichés dans l'image par égard pour la boite mail de copeaux d'aronde ! " />
-
-        </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-default">Envoyer !</button>
+    <input type="email" id="email" title="Email" name="email" placeholder="Email" value="<%= cookies[:email] %>" />
+    <input type="email" id="confirmEmail" name="confirmEmail" title="Email de confirmation" placeholder="Confirmation email" value="<%= cookies[:confirmEmail] %>" data-toggle="tooltip" data-placement="right" title="Les adresses ne sont pas identiques" />
+    <input type="text" name="title" placeholder="Titre" title="Titre" value="<%= cookies[:title] %>" />
+    <textarea name="content" title="Contenu du message" placeholder="Votre texte ici" rows="10"><%= cookies[:content] %></textarea>
+    <button type="submit" class="">Envoyer !</button>
 
   </form>
 </div>
