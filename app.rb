@@ -48,7 +48,7 @@ class App < Sinatra::Base
     js :contact, ['/js/jquery-1.11.2.min.js', '/js/contact.js']
 
     css :application, ['/css/application.css']
-    js :fancybox, ['/js/jquery-1.11.2.min.js', '/js/jquery.fancybox.pack.js']
+    js  :fancybox, ['/js/jquery-1.11.2.min.js', '/js/jquery.fancybox.pack.js']
     css :fancybox, ['/css/jquery.fancybox.css']
     css :bootstrap, ['/css/bootstrap.min.css']
 

@@ -1,10 +1,9 @@
 
 <%= js :fancybox %>
+<%= css :fancybox %>
 <h2 style="background-color: <%= @bgColor%>;"><%= @page_title %></h2>
 
 <div class="gallery" style="background-color: <%= @bgColor%>;">
-
-
 
     <% @panels.each_slice( (@panels.length < 3 ? 3 : @panels.length)/3 ).each do |group| %>
 
@@ -13,7 +12,7 @@
 
                     <% panel.images.each do |img| %>
                         <% csrc = "images/panels/#{panel.folder_name}/#{img.file_normal}" %>
-                        <a class="grouped_elements <%= img.id==panel.icon_id ? '' : 'display-none' %>" rel="group_<%= panel.id%>" href="<%= csrc %>">
+                        <a class="grouped_elements <%= img.id==panel.icon_id ? '' : 'display-none' %>" title="<%= img.comment %>" rel="group_<%= panel.id%>" href="<%= csrc %>">
                             <img class="max-width-500" src="<%= csrc %>" alt="<%= img.name %>"/>
                         </a>
                     <% end %>
@@ -23,3 +22,20 @@
         </div>
     <% end %>
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    $("a.grouped_elements").fancybox({
+        overlayOpacity: 0.5,
+        helpers : {
+            title: {
+                type: 'inside'
+            }
+        },
+        hideOnContentClick: true,
+        transitionIn: 'none',
+        transitionOut: 'none'
+    });
+  });
+</script>
