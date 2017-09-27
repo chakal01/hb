@@ -5,7 +5,7 @@
 
 <div class="gallery" style="background-color: <%= @bgColor%>;">
 
-    <% @panels.each_slice( (@panels.length < 3 ? 3 : @panels.length)/3 ).each do |group| %>
+    <% @panels.each_slice( (@panels.length < 3 ? 3 : (@panels.length/3.0).round) ).each do |group| %>
 
         <div class="sub">
             <% group.each do |panel| %>

@@ -19,7 +19,7 @@ module MailerHelper
         from config["email"]["from"]
         to config["email"]["to"].join(";")
         subject config["email"]["subject"]
-        body "Salut ! Un formulaire de contact a été rempli sur http://hbonnot-ebenisterie.fr !\n\n\nPar: #{email}\nObjet: #{title}\n\n#{content}"
+        body "Salut ! Un formulaire de contact a été rempli sur http://hbonnot-ebeniste.fr !\n\n\nPar: #{email}\nObjet: #{title}\n\n#{content}"
       end
       mail.deliver
     rescue => e
