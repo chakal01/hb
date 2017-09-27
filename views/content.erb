@@ -1,13 +1,13 @@
 
 <%= js :fancybox %>
 <%= css :fancybox %>
-<h2 style="background-color: <%= @bgColor%>;"><%= @page_title %></h2>
+<h2><%= @page_title %></h2>
 
 <div class="gallery" style="background-color: <%= @bgColor%>;">
 
     <% @panels.each_slice( (@panels.length < 3 ? 3 : @panels.length)/3 ).each do |group| %>
 
-        <div>
+        <div class="sub">
             <% group.each do |panel| %>
 
                     <% panel.images.each do |img| %>

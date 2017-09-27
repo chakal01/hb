@@ -1,11 +1,11 @@
 <%= js :contact %>
 
-<%= erb :flash %>
 
 
 <div class="main-content">
   <form method="post" class="form" action="/contact">
     <p><%= @text_intro_contact %></p>
+    <%= erb :flash %>
 
     <input type="email" id="email" title="Email" name="email" placeholder="Email" value="<%= cookies[:email] %>" />
     <input type="email" id="confirmEmail" name="confirmEmail" title="Email de confirmation" placeholder="Confirmation email" value="<%= cookies[:confirmEmail] %>" data-toggle="tooltip" data-placement="right" title="Les adresses ne sont pas identiques" />

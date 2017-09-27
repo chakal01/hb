@@ -2,7 +2,7 @@ body{
     margin: 0px !important;
     padding: 0px !important;
     background-color: #111 !important;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'sans-serif';
 }
 @font-face {
     font-family: 'staccato';
@@ -94,10 +94,15 @@ li{
     list-style: none;
     display: block;
 }
+.map, #map{
+  height: 300px;
+  margin-bottom: 20px;
+}
 
 .content{
-    background-color: #bbb;
+    background-color: #333;
     margin: 0px !important;
+    padding-bottom: 10px;
 }
 .content h2 {
     color: #eee;
@@ -112,18 +117,25 @@ li{
     padding: 10px;
     display: flex;
     min-height: 400px;
+    margin-right: 40px;
+    margin-left: 40px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: flex-start;
 }
-.gallery div{
+.gallery .sub{
     width: 33.33%;
     padding: 8px;
 }
 .event-content{
     padding-left: 60px;
     padding-right: 60px;
+}
+form.form p{
+    width: 400px;
+    margin: auto;
+    margin-top: 40px;
 }
 
 form.form{
@@ -153,8 +165,27 @@ form.form button{
     min-width: 424px;
     height: 35px;
 }
+.alert{
+    padding: 15px;
+    max-width: 400px;
+    min-width: 400px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
 
 h2{
     display: block;
     margin: 0px;
+    text-transform: uppercase;
 }

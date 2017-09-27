@@ -131,10 +131,8 @@ class App < Sinatra::Base
     errors = []
     errors << "Emails non compatibles" if params[:email]!=params[:confirmEmail]
     errors << "Veuillez écrire un message" if params[:content].nil? or params[:content]==""
-    errors << "Code de sécurité erroné" unless captcha_pass?
     
     unless errors.empty?
-      errors << "Veuillez retaper le code de sécurité" unless errors.include? "Code de sécurité erroné"
       flash[:error] = errors.join(', ')
     else
       send_mail(params[:email], params[:title], params[:content])
