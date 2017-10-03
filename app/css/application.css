@@ -6,7 +6,7 @@ body{
 }
 @font-face {
     font-family: 'sanss';
-    src: url(../fonts/sanss.ttf) format('ttf'),
+    src: url(../fonts/sanss.ttf) format('truetype'),
         url(../fonts/sanss.woff) format('woff');
 }
 @font-face {
