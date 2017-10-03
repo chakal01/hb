@@ -6,7 +6,8 @@ body{
 }
 @font-face {
     font-family: 'sanss';
-    src: url(../fonts/sanss.ttf);
+    src: url(../fonts/sanss.ttf) format('ttf'),
+        url(../fonts/sanss.woff) format('woff');
 }
 @font-face {
     font-family: 'staccato';
