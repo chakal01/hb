@@ -90,24 +90,34 @@ class App < Sinatra::Base
     erb :accueil
   end
 
+  def get_group(panel_type)
+    @panels = Panel.where(panel_type: panel_type, is_active: true).order(:ordre)
+    @groups = [[], [], []]
+    index = 0
+    @panels.each do |panel|
+      @groups[index%3] << panel
+      index += 1
+    end
+  end
+
   get '/meubles' do
     @page_title="Meubles"
     @bgColor = Constant.get('bgMeubles')
-    @panels = Panel.where(panel_type: "meuble", is_active: true).order(:ordre)
+    get_group("meuble")
     erb :content
   end
 
   get '/atelier' do
     @page_title="Atelier"
     @bgColor = Constant.get('bgAtelier')
-    @panels = Panel.where(panel_type: "atelier", is_active: true).order(:ordre)
+    get_group("atelier")
     erb :content
   end
 
   get '/decoration' do
     @page_title="Décoration"
     @bgColor = Constant.get('bgDecoration')
-    @panels = Panel.where(panel_type: "decoration", is_active: true).order(:ordre)
+    get_group("decoration")
     erb :content
   end
 
