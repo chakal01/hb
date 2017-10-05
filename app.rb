@@ -85,6 +85,7 @@ class App < Sinatra::Base
     @text_welcome = Constant.get('text_welcome')
     @news = Constant.get('news')
     @address = Constant.get('address')
+    @bgTop = Constant.get('imgHautAccueil', '/images/fond_atelier.png')
     @bgColor = Constant.get('bgAccueil')
     @imgAccueil = Constant.get('imgAccueil')
     erb :accueil
@@ -102,6 +103,7 @@ class App < Sinatra::Base
 
   get '/meubles' do
     @page_title="Meubles"
+    @bgTop = Constant.get('imgHautMeubles', '/images/fond_atelier.png')
     @bgColor = Constant.get('bgMeubles')
     get_group("meuble")
     erb :content
@@ -109,6 +111,7 @@ class App < Sinatra::Base
 
   get '/atelier' do
     @page_title="Atelier"
+    @bgTop = Constant.get('imgHautAtelier', '/images/fond_atelier.png')
     @bgColor = Constant.get('bgAtelier')
     get_group("atelier")
     erb :content
@@ -116,18 +119,21 @@ class App < Sinatra::Base
 
   get '/decoration' do
     @page_title="Décoration"
+    @bgTop = Constant.get('imgHautDecoration', '/images/fond_atelier.png')
     @bgColor = Constant.get('bgDecoration')
     get_group("decoration")
     erb :content
   end
 
   get '/evenements' do
+    @bgTop = Constant.get('imgHautEvenement', '/images/fond_atelier.png')
     @bgColor = Constant.get('bgEvenements')
     @news = Constant.get('news')
     erb :evenements
   end
 
   get '/contact' do
+    @bgTop = Constant.get('imgHautContact', '/images/fond_atelier.png')
     @text_intro_contact = Constant.get('text_contact')
     erb :contact
   end
@@ -179,13 +185,13 @@ class App < Sinatra::Base
     post '/constants' do
       params.each do |key, value|
         c = Constant.find_by(key: key)
-        if c.key == "imgAccueil"
+        if ['imgHautMeubles','imgHautContact','imgHautAtelier','imgHautDecoration','imgHautEvenement','imgAccueil'].include? c.key
           # Save image
           fileType = value[:filename].split('.')[-1]
-          File.open("./app/images/bg-accueil.#{fileType}", "wb") do |f|
+          File.open("./app/images/#{c.key}.#{fileType}", "wb") do |f|
             f.write(value[:tempfile].read)
           end
-          value = 'images/bg-accueil.' + fileType
+          value = "images/#{c.key}.#{fileType}"
         end
         c.update_attributes({value: value}) unless c.nil?
       end

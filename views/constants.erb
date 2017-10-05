@@ -14,7 +14,20 @@
         <% elsif constant.input_type=="color" %>
           <input type="color" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% elsif constant.input_type=="image" %>
-          <input type="file" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
+          <% if constant.value %>
+            <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-4">
+                <img src="/<%= constant.value %>" style="max-height: 100px; max-width: 150px;"/>
+              </div>
+              <div class="col-sm-8">
+                <input type="file" class="form-control col-sm-6" id="<%= constant.key %>" name="<%= constant.key %>">
+              </div>
+            </div>
+            </div>
+          <% else %>
+            <input type="file" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>">
+          <% end %>
         <% else %>
           <input type="text" class="form-control col-sm-12" id="<%= constant.key %>" name="<%= constant.key %>" value="<%= constant.value %>" >
         <% end %>
