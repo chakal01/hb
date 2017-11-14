@@ -185,7 +185,7 @@ class App < Sinatra::Base
     post '/constants' do
       params.each do |key, value|
         c = Constant.find_by(key: key)
-        if ['imgHautMeubles','imgHautContact','imgHautAtelier','imgHautDecoration','imgHautEvenement','imgAccueil'].include? c.key
+        if ['imgHautMeubles','imgHautContact','imgHautAtelier','imgHautDecoration','imgHautEvenement','imgHautAccueil', 'imgAccueil'].include? c.key
           # Save image
           fileType = value[:filename].split('.')[-1]
           File.open("./app/images/#{c.key}.#{fileType}", "wb") do |f|
